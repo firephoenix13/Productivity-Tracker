@@ -1,4 +1,10 @@
+package productivity.tracker;
+
 import javax.swing.SwingUtilities;
+
+import productivity.tracker.models.Model;
+import productivity.tracker.presenters.Presenter;
+import productivity.tracker.views.View;
 
 public class Application {
     public Application() {

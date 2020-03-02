@@ -1,3 +1,5 @@
+package productivity.tracker.models;
+
 /**
  * A minimal class to maintain some state 
  */

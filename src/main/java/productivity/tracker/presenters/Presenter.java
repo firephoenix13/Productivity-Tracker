@@ -1,3 +1,9 @@
+package productivity.tracker.presenters;
+
+import productivity.tracker.interfaces.ViewListener;
+import productivity.tracker.models.Model;
+import productivity.tracker.views.View;
+
 /**
  * Responsible to responding to user interaction and updating the view
  */

@@ -1,3 +1,5 @@
+package productivity.tracker.views;
+
 /**
  * Provides the UI elements
  */
@@ -10,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
+
+import productivity.tracker.interfaces.ViewListener;
 
 public class View {
     // A list of listeners subscribed to this view
