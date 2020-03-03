@@ -4,24 +4,16 @@ import productivity.tracker.interfaces.ViewListener;
 import productivity.tracker.models.Model;
 import productivity.tracker.views.View;
 
-/**
- * Responsible to responding to user interaction and updating the view
- */
-public class Presenter implements ViewListener {
-    private final View view;
-    private final Model model;
+public class Presenter extends PresenterBase<View, Model> implements ViewListener {
 
-    public Presenter(final View view, final Model model) {
-        this.view = view;
-        view.addListener(this);
-        this.model = model;
-    }
+	public Presenter(View view, Model model) {
+		super(view, model);
+		getView().setPresenter(this);
+	}
 
-    @Override
-    public void onButtonClicked() {
-        // Update the model (ie. the state of the application)
-        model.addOneToCount();
-        // Update the view
-        view.setLabelText(String.valueOf(model.getCount()));
-    }
+	@Override
+	public void onButtonClicked() {
+		getModel().addOneToCount();
+		getView().setLabelText(String.valueOf(getModel().getCount()));
+	}
 }

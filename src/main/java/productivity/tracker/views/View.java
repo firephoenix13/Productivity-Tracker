@@ -1,62 +1,57 @@
 package productivity.tracker.views;
 
-/**
- * Provides the UI elements
- */
-
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import productivity.tracker.interfaces.ViewListener;
+import productivity.tracker.presenters.Presenter;
 
-public class View {
-    // A list of listeners subscribed to this view
-    private final ArrayList<ViewListener> listeners;
-    private final JLabel label;
-    
-    public View() {
-        final JFrame frame = new JFrame();
-        frame.setSize(200, 100);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout());
+public class View extends ViewBase<Presenter> {
 
-        final JButton button = new JButton("Hello, world!");
+	private JPanel panel;
+	private final JButton button;
+	private final JLabel label;
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                notifyListenersOnButtonClicked();
-            }
-        });
-        frame.add(button);
+	public View(final JFrame frame) {
 
-        label = new JLabel();
-        frame.add(label);
+		panel = new JPanel();
 
-        this.listeners = new ArrayList<ViewListener>();
+		button = new JButton("Hello, world!");
+		button.addActionListener(e -> getPresenter().onButtonClicked());
 
-        frame.setVisible(true);
-    }
+		label = new JLabel();
 
-    // Iterate through the list, notifying each listner individualy 
-    private void notifyListenersOnButtonClicked() {
-        for (final ViewListener listener : listeners) {
-            listener.onButtonClicked();
-        }
-    }
+		panel.add(button);
+		panel.add(label);
 
-    // Subscribe a listener
-    public void addListener(final ViewListener listener) {
-        listeners.add(listener);
-    }
+		frame.add(panel);
+	}
 
-    public void setLabelText(final String text) {
-        label.setText(text);
-    }
+	public void setLabelText(final String text) {
+		label.setText(text);
+	}
+
+	@Override
+	public void show() {
+		if (!panel.isVisible())
+			panel.setVisible(true);
+	}
+
+	@Override
+	public void hide() {
+		if (panel.isVisible())
+			panel.setVisible(false);
+	}
+
+	@Override
+	public void dispose() {
+	}
 }
