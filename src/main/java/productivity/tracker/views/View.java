@@ -46,10 +46,4 @@ public class View extends ViewBase<Presenter> {
 	@Override
 	public void dispose() {
 	}
-
-	@Override
-	public void buildUI() {
-		// TODO Auto-generated method stub
-		
-	}
 }

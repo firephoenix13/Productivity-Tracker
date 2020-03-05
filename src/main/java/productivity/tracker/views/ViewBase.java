@@ -14,8 +14,6 @@ public abstract class ViewBase<T extends PresenterBase<?, ?>> {
 		this.presenter = presenter;
 	}
 
-	public abstract void buildUI();
-
 	public abstract void show();
 
 	public abstract void hide();

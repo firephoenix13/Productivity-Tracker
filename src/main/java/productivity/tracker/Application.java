@@ -25,7 +25,6 @@ public class Application {
 		final MainPresenter presenter = new MainPresenter(view, model);
 
 		view.setPresenter(presenter);
-		view.buildUI();
 	}
 
 	public static void main(String[] args) {
