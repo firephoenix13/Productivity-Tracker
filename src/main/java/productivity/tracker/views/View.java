@@ -1,17 +1,10 @@
 package productivity.tracker.views;
 
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 
-import productivity.tracker.interfaces.ViewListener;
 import productivity.tracker.presenters.Presenter;
 
 public class View extends ViewBase<Presenter> {
@@ -21,7 +14,6 @@ public class View extends ViewBase<Presenter> {
 	private final JLabel label;
 
 	public View(final JFrame frame) {
-
 		panel = new JPanel();
 
 		button = new JButton("Hello, world!");
@@ -53,5 +45,11 @@ public class View extends ViewBase<Presenter> {
 
 	@Override
 	public void dispose() {
+	}
+
+	@Override
+	public void buildUI() {
+		// TODO Auto-generated method stub
+		
 	}
 }
