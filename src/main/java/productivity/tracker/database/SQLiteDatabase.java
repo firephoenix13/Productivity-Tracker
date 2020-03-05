@@ -18,11 +18,11 @@ public class SQLiteDatabase implements AutoCloseable {
 	private Connection conn;
 
 	private SQLiteDatabase() {
-
+		Class.forName("org.sqlite.JDBC");
 		try {
-
+			
 			// DB location
-			String url = "jdbc:sqlite:database.db";
+			String url = "jdbc:sqlite:D:/Code/GitHub/Productivity-Tracker/src/main/resources/ProductivityDB.db";
 
 			// Create a connection to the database
 			conn = DriverManager.getConnection(url);
