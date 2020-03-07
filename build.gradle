@@ -9,6 +9,8 @@
 plugins {
     // Apply the java plugin to add support for Java
     id 'java'
+    
+    id 'eclipse'
 
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
@@ -26,6 +28,32 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     
     compile group:'org.xerial', name:'sqlite-jdbc', version:'3.8.11.2'
+}
+
+File runningDir = new File('build')
+runningDir.mkdirs()
+tasks.run.workingDir = runningDir
+
+task copyResources(type: Copy) {
+    from "${projectDir}/src/res"
+    into "${buildDir}/res"
+    eachFile {
+        if (it.relativePath.getFile(destinationDir).exists()) {
+            it.exclude()
+        }
+    }
+}
+run.dependsOn copyResources
+
+distributions {
+    main {
+        distributionBaseName = 'Productivity-Tracker'
+        contents {
+            into ('bin/res') {
+        		from 'src/res'
+        	}
+        }
+    }
 }
 
 application {

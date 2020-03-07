@@ -1,5 +1,9 @@
 package productivity.tracker.database;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,7 +30,7 @@ public class SessionSQLRepository implements Repository<Session> {
 		try {
 
 			// DB location
-			String url = "jdbc:sqlite::resource:ProductivityDB.db";
+			String url = "jdbc:sqlite:res/ProductivityDB.db";
 
 			// Create a connection to the database
 			connection = DriverManager.getConnection(url);
