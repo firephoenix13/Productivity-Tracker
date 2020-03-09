@@ -1,70 +1,83 @@
 package productivity.tracker.views;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.table.TableModel;
+import javax.swing.WindowConstants;
 
-import productivity.tracker.presenters.MainPresenter;
+import productivity.tracker.presenters.DatabasePresenter;
 
-public class MainView extends ViewBase<MainPresenter> {
+public class MainView extends JFrame implements ViewBase {
 
-	private JTable table;
+	private static final long serialVersionUID = 1L;
 
-	public MainView(JFrame frame) {
-		JButton button = new JButton("Add Entry");
-		button.addActionListener(e -> getPresenter().onFilterButtonPressed());
+	private JComponent leftComponent;
+	private JComponent centralComponent;
 
-		table = new JTable();
-		table.setGridColor(Color.WHITE);
-		table.setFillsViewportHeight(true);
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table.setBackground(Color.WHITE);
+	public MainView() {
+		setMinimumSize(new Dimension(800, 600));
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setVisible(true);
+		setResizable(false);
 
-		// Set the view layout
-		JPanel ctrlPane = new JPanel();
-		ctrlPane.setBackground(new Color(0, 0, 255));
-		ctrlPane.add(button);
-
-		JScrollPane tableScrollPane = new JScrollPane(table);
-		tableScrollPane.setBackground(new Color(30, 144, 255));
-		tableScrollPane.setPreferredSize(new Dimension(700, 182));
-		tableScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
-				"Session Database", TitledBorder.CENTER, TitledBorder.TOP));
-
-		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, ctrlPane, tableScrollPane);
-		splitPane.setDividerLocation(35);
-		splitPane.setEnabled(false);
-
-		frame.getContentPane().add(splitPane);
+		initGUI();
 	}
 
-	public void setTableModel(TableModel model) {
-		table.setModel(model);
-		
-		table.repaint();
-		table.invalidate();
+	private void initGUI() {
+
+		DatabasePresenter presenter = new DatabasePresenter(new DatabaseView());
+
+		JPanel navigationPanel = new JPanel();
+		FlowLayout fl_navigationPanel = new FlowLayout(FlowLayout.LEFT, 5, 5);
+		fl_navigationPanel.setAlignOnBaseline(true);
+		navigationPanel.setLayout(fl_navigationPanel);
+		JLabel label = new JLabel("Left Component");
+		navigationPanel.add(label);
+		JButton button_1 = new JButton("Exit Button");
+		navigationPanel.add(button_1);
+		JButton button = new JButton("Left Button");
+		navigationPanel.add(button);
+
+		setLeftComponent(navigationPanel);
+		setCentralComponent(presenter.getView());
 	}
 
 	@Override
-	public void show() {
+	public void onPresenterAttached() {
+		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public void hide() {
+	public void setCentralComponent(final JComponent component) {
+		clearCentralComponent();
+		centralComponent = component;
+		getContentPane().add(component, BorderLayout.CENTER);
+		pack();
 	}
 
-	@Override
-	public void dispose() {
+	public void clearCentralComponent() {
+		if (centralComponent != null) {
+			getContentPane().remove(centralComponent);
+			centralComponent = null;
+		}
 	}
 
+	public void setLeftComponent(final JComponent component) {
+		clearLeftComponent();
+		leftComponent = component;
+		getContentPane().add(component, BorderLayout.LINE_START);
+		pack();
+	}
+
+	public void clearLeftComponent() {
+		if (leftComponent != null) {
+			getContentPane().remove(leftComponent);
+			leftComponent = null;
+		}
+	}
 }

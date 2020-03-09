@@ -47,7 +47,6 @@ run.dependsOn copyResources
 
 distributions {
     main {
-        distributionBaseName = 'Productivity-Tracker'
         contents {
             into ('bin/res') {
         		from 'src/res'
