@@ -9,28 +9,24 @@ public class DatabasePresenter extends PresenterBase<DatabaseView, SessionTableM
 
 	private SessionSQLRepository repo;
 
-	String sqlSelect = "SELECT SessionID, SessionEfficiency, SessionStartTime, SessionDuration, SessionDate FROM Sessions WHERE SessionID > 0";
+	String sqlSelect = "SELECT SessionID, SessionEfficiency, SessionStartTime, SessionDuration, SessionDate FROM Sessions";
 
 	public DatabasePresenter(DatabaseView view) {
 		super(view, new SessionTableModel());
 
 		repo = new SessionSQLRepository();
-
-		// Update the model.
 		getModel().setSessions(repo.query(sqlSelect));
 
-		// Update the view.
 		getView().setTableModel(getModel());
-
 		getView().addEntryButtonActionListener(e -> onEntryButtonPressed());
 	}
 
 	private void onEntryButtonPressed() {
 		repo.add(new Session(0, 12, 34, 52, 23));
-
+		
 		getModel().setSessions(repo.query(sqlSelect));
-
-		getModel().fireTableDataChanged();
+		
+		getView().scrollTable();
 	}
 
 }

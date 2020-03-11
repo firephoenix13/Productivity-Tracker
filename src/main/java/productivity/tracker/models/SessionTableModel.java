@@ -2,7 +2,6 @@ package productivity.tracker.models;
 
 import java.util.List;
 
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 import productivity.tracker.database.tables.Session;
@@ -15,6 +14,12 @@ public class SessionTableModel extends AbstractTableModel implements ModelBase {
 
 	public void setSessions(List<Session> sessions) {
 		this.sessions = sessions;
+		fireTableDataChanged();
+	}
+
+	public void addSession(Session session) {
+		this.sessions.add(session);
+		fireTableDataChanged();
 	}
 
 	@Override
@@ -81,20 +86,5 @@ public class SessionTableModel extends AbstractTableModel implements ModelBase {
 		default:
 			return null;
 		}
-	}
-
-	@Override
-	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void addTableModelListener(TableModelListener l) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void removeTableModelListener(TableModelListener l) {
-		// TODO Auto-generated method stub
 	}
 }

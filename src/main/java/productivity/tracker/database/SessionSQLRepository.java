@@ -67,7 +67,7 @@ public class SessionSQLRepository implements Repository<Session> {
 	@Override
 	public List<Session> query(String sql) {
 
-		List<Session> sessions = new ArrayList<>();
+		List<Session> sessions = new ArrayList<Session>();
 
 		try (Connection conn = this.connect();
 				Statement stmt = conn.createStatement();
