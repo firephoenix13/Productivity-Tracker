@@ -30,12 +30,16 @@ public class DatabaseView extends JPanel implements ViewBase {
 
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(splitPane,
-				GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
-				groupLayout.createSequentialGroup()
-						.addComponent(splitPane, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(splitPane, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(splitPane, GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+					.addGap(0))
+		);
 
 		JPanel panel = new JPanel();
 		splitPane.setRightComponent(panel);
@@ -45,6 +49,7 @@ public class DatabaseView extends JPanel implements ViewBase {
 			panel.add(scrollPane, BorderLayout.CENTER);
 			
 			table = new JTable();
+			table.setFillsViewportHeight(true);
 			scrollPane.setViewportView(table);
 		}
 

@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import productivity.tracker.presenters.DatabasePresenter;
-import productivity.tracker.presenters.SessionListPresenter;
 
 public class MainView extends JFrame implements ViewBase {
 
@@ -18,10 +17,11 @@ public class MainView extends JFrame implements ViewBase {
 	private JComponent centralComponent;
 
 	public MainView() {
-		setMinimumSize(new Dimension(800, 600));
+		setTitle("Productivity Tracker");
+		setMinimumSize(new Dimension(400, 300));
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setVisible(true);
-		setResizable(false);
+		setResizable(true);
 
 		initGUI();
 	}
@@ -31,11 +31,10 @@ public class MainView extends JFrame implements ViewBase {
 		DatabaseView dbv = new DatabaseView();
 		new DatabasePresenter(dbv);
 		
-		SessionListView slv = new SessionListView();
-		new SessionListPresenter(slv);
 		
 		setCentralComponent(dbv);
-		setLeftComponent(slv);
+		
+		setLeftComponent(new CreateTemplateView());
 	}
 
 	@Override

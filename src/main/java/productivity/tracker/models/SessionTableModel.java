@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import productivity.tracker.database.tables.Session;
+import productivity.tracker.database.models.Session;
 
 public class SessionTableModel extends AbstractTableModel implements ModelBase {
 
@@ -31,7 +31,7 @@ public class SessionTableModel extends AbstractTableModel implements ModelBase {
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 5;
+		return 6;
 	}
 
 	@Override
@@ -42,13 +42,15 @@ public class SessionTableModel extends AbstractTableModel implements ModelBase {
 		case 0:
 			return "SessionID";
 		case 1:
-			return "SessionEfficiency";
+			return "TemplateID";
 		case 2:
 			return "SessionStartTime";
 		case 3:
-			return "SessionDuration";
+			return "SessionEndTime";
 		case 4:
-			return "SessionDate";
+			return "SessionEfficiency";
+		case 5:
+			return "SessionMood";
 		default:
 			return "Unknown";
 		}
@@ -76,13 +78,15 @@ public class SessionTableModel extends AbstractTableModel implements ModelBase {
 		case 0:
 			return session.getSessionID();
 		case 1:
-			return session.getSessionEfficiency();
+			return session.getTemplateID();
 		case 2:
 			return session.getSessionStartTime();
 		case 3:
-			return session.getSessionDuration();
+			return session.getSessionEndTime();
 		case 4:
-			return session.getSessionDate();
+			return session.getSessionEfficiency();
+		case 5:
+			return session.getSessionMood();
 		default:
 			return null;
 		}

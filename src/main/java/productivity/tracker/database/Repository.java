@@ -4,11 +4,13 @@ import java.util.List;
 
 public interface Repository<T> {
 
-	void add(T item);
+	public List<T> query(String sql);
 
-	List<T> query(String sql);
+	public List<T> getAll();
 
-	void update(T item);
+	public void add(T item);
 
-	void remove(T item);
+	public void update(T item);
+
+	public void remove(T item);
 }
