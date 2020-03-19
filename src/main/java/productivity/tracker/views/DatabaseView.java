@@ -1,50 +1,69 @@
 package productivity.tracker.views;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.TableModel;
+import javax.swing.JTable;
 
-public class DatabaseView extends JSplitPane implements ViewBase {
+public class DatabaseView extends JPanel implements ViewBase {
 
 	private static final long serialVersionUID = 1L;
-
-	JTable table;
-	private JButton btnAddRandomEntry;
+	private JButton btnNewButton;
+	private JScrollPane scrollPane;
+	private JTable table;
 
 	public DatabaseView() {
 		initGUI();
 	}
 
 	private void initGUI() {
-		table = new JTable();
-		table.setGridColor(Color.WHITE);
-		table.setAutoscrolls(true);
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 
-		JScrollPane pane = new JScrollPane(table);
-		pane.setBackground(new Color(192, 192, 192));
-		pane.setAutoscrolls(true);
-		pane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Session Database",
-				TitledBorder.CENTER, TitledBorder.TOP));
+		JSplitPane splitPane = new JSplitPane();
 
-		setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(splitPane,
+				GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
+				groupLayout.createSequentialGroup()
+						.addComponent(splitPane, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
-		setRightComponent(pane);
+		JPanel panel = new JPanel();
+		splitPane.setRightComponent(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		{
+			scrollPane = new JScrollPane();
+			panel.add(scrollPane, BorderLayout.CENTER);
+			
+			table = new JTable();
+			scrollPane.setViewportView(table);
+		}
 
-		btnAddRandomEntry = new JButton("Add Random Entry");
-		setLeftComponent(btnAddRandomEntry);
+		JPanel panel_1 = new JPanel();
+		splitPane.setLeftComponent(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		{
+			btnNewButton = new JButton("Add Entry");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			panel_1.add(btnNewButton, BorderLayout.CENTER);
+		}
+		setLayout(groupLayout);
 	}
 
 	public void addEntryButtonActionListener(ActionListener l) {
-		btnAddRandomEntry.addActionListener(l);
+		btnNewButton.addActionListener(l);
 	}
 
 	@Override

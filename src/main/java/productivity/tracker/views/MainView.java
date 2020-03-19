@@ -2,16 +2,13 @@ package productivity.tracker.views;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import productivity.tracker.presenters.DatabasePresenter;
+import productivity.tracker.presenters.SessionListPresenter;
 
 public class MainView extends JFrame implements ViewBase {
 
@@ -30,22 +27,15 @@ public class MainView extends JFrame implements ViewBase {
 	}
 
 	private void initGUI() {
-
-		DatabasePresenter presenter = new DatabasePresenter(new DatabaseView());
-
-		JPanel navigationPanel = new JPanel();
-		FlowLayout fl_navigationPanel = new FlowLayout(FlowLayout.LEFT, 5, 5);
-		fl_navigationPanel.setAlignOnBaseline(true);
-		navigationPanel.setLayout(fl_navigationPanel);
-		JLabel label = new JLabel("Left Component");
-		navigationPanel.add(label);
-		JButton button_1 = new JButton("Exit Button");
-		navigationPanel.add(button_1);
-		JButton button = new JButton("Left Button");
-		navigationPanel.add(button);
-
-		setLeftComponent(navigationPanel);
-		setCentralComponent(presenter.getView());
+		
+		DatabaseView dbv = new DatabaseView();
+		new DatabasePresenter(dbv);
+		
+		SessionListView slv = new SessionListView();
+		new SessionListPresenter(slv);
+		
+		setCentralComponent(dbv);
+		setLeftComponent(slv);
 	}
 
 	@Override
