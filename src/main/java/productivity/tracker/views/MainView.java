@@ -27,14 +27,15 @@ public class MainView extends JFrame implements ViewBase {
 	}
 
 	private void initGUI() {
-		
+
 		DatabaseView dbv = new DatabaseView();
 		new DatabasePresenter(dbv);
-		
-		
+
 		setCentralComponent(dbv);
-		
-		setLeftComponent(new CreateTemplateView());
+
+		CreateTemplateView ctv = new CreateTemplateView();
+
+		setLeftComponent(ctv);
 	}
 
 	@Override
