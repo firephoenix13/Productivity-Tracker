@@ -17,6 +17,12 @@ public class SessionTemplate {
 		this.templateDescription = templateDescription;
 	}
 
+	public SessionTemplate(String templateName, String templateDescription) {
+		this.templateID = -1;
+		this.templateName = templateName;
+		this.templateDescription = templateDescription;
+	}
+
 	public int getTemplateID() {
 		return templateID;
 	}

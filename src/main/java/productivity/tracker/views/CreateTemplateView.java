@@ -3,6 +3,7 @@ package productivity.tracker.views;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -45,7 +46,6 @@ public class CreateTemplateView extends JPanel implements ViewBase {
 		lblCreateANew.setForeground(Color.WHITE);
 		txtTemplateExplaination = new JTextPane();
 		txtTemplateExplaination.setOpaque(false);
-		txtTemplateExplaination.setAutoscrolls(false);
 		txtTemplateExplaination.setEditable(false);
 		txtTemplateExplaination.setFont(new Font("Calibri", Font.PLAIN, 13));
 		txtTemplateExplaination.setForeground(Color.WHITE);
@@ -171,14 +171,28 @@ public class CreateTemplateView extends JPanel implements ViewBase {
 										Short.MAX_VALUE))));
 
 		templateDescriptionTextArea = new JTextArea();
-		templateDescriptionTextArea
-				.setToolTipText("The description of the session template (e.g. My weekly write-up of Maths notes).");
 		templateDescriptionTextArea.setWrapStyleWord(true);
 		templateDescriptionTextArea.setLineWrap(true);
 		templateDescriptionTextArea.setFont(new Font("Calibri", Font.PLAIN, 13));
 		templateDescriptionTextAreaScrollPane.setViewportView(templateDescriptionTextArea);
 		dataFormPanel.setLayout(gl_dataFormPanel);
 		setLayout(groupLayout);
+	}
+
+	public void addCancelButtonListener(ActionListener l) {
+		btnCancel.addActionListener(l);
+	}
+
+	public void addCreateButtonListener(ActionListener l) {
+		btnCreate.addActionListener(l);
+	}
+
+	public String getTemplateName() {
+		return this.templateNameTextField.getText();
+	}
+
+	public String getTemplateDescription() {
+		return templateDescriptionTextArea.getText();
 	}
 
 	@Override

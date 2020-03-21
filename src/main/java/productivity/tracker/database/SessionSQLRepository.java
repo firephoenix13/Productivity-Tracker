@@ -43,6 +43,8 @@ public class SessionSQLRepository implements Repository<Session> {
 
 		String sql = "INSERT INTO Sessions(TemplateID, SessionStartTime, SessionEndTime, SessionEfficiency, SessionMood) VALUES(?, ?, ?, ?, ?)";
 
+		// SessionID, TemplateID, SessionEfficiency, SessionStartTime, SessionDuration,
+		// SessionDate
 		try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setInt(1, item.getTemplateID());
 			pstmt.setInt(2, item.getSessionStartTime());
@@ -79,7 +81,8 @@ public class SessionSQLRepository implements Repository<Session> {
 			// loop through the result set
 			while (rs.next()) {
 
-				// SessionID, SessionEfficiency, SessionStartTime, SessionDuration, SessionDate
+				// SessionID, TemplateID, SessionEfficiency, SessionStartTime, SessionDuration,
+				// SessionDate
 				Session session = new Session(rs.getInt("SessionID"), rs.getInt("TemplateID"),
 						rs.getInt("SessionStartTime"), rs.getInt("SessionEndTime"), rs.getInt("SessionEfficiency"),
 						rs.getInt("SessionMood"));
@@ -108,8 +111,8 @@ public class SessionSQLRepository implements Repository<Session> {
 			// loop through the result set
 			while (rs.next()) {
 
-				// SessionID, TemplateID, SessionStartTime, SessionEndTime, SessionEffciency,
-				// SessionMood
+				// SessionID, TemplateID, SessionEfficiency, SessionStartTime, SessionDuration,
+				// SessionDate
 				Session session = new Session(rs.getInt("SessionID"), rs.getInt("TemplateID"),
 						rs.getInt("SessionStartTime"), rs.getInt("SessionEndTime"), rs.getInt("SessionEfficiency"),
 						rs.getInt("SessionMood"));
