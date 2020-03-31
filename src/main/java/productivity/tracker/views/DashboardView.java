@@ -11,12 +11,12 @@ import javax.swing.WindowConstants;
 import productivity.tracker.presenters.CreateTemplatePresenter;
 import productivity.tracker.presenters.DatabasePresenter;
 
-public class MainView extends JFrame implements ViewBase {
+public class DashboardView extends JFrame implements ViewBase {
 
 	private static final long serialVersionUID = 1L;
 	private JSplitPane splitPane;
 
-	public MainView() {
+	public DashboardView() {
 		setTitle("Productivity Tracker");
 		setMinimumSize(new Dimension(400, 300));
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -38,7 +38,7 @@ public class MainView extends JFrame implements ViewBase {
 			splitPane = new JSplitPane();
 			splitPane.setBackground(Color.DARK_GRAY);
 			splitPane.setLeftComponent(ctv);
-			splitPane.setRightComponent(dbv);
+			splitPane.setRightComponent(new CreateSessionView());
 			getContentPane().add(splitPane, BorderLayout.CENTER);
 			pack();
 		}
