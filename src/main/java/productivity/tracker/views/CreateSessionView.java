@@ -98,10 +98,10 @@ public class CreateSessionView extends JPanel implements ViewBase {
 		lblSelectTheStartTIme = new JLabel("Select the start time:");
 		lblSelectTheStartTIme.setForeground(Color.WHITE);
 		lblSelectTheStartTIme.setFont(new Font("Calibri", Font.PLAIN, 13));
-		
-		URL dateImageURL = FullDemo.class.getResource("/images/datepickerbutton1.png");
-        Image dateImage = Toolkit.getDefaultToolkit().getImage(dateImageURL);
-        ImageIcon dateIcon = new ImageIcon(dateImage);
+
+		URL dateImageURL = CreateSessionView.class.getResource("/images/datepickerbutton1.png");
+		Image dateImage = Toolkit.getDefaultToolkit().getImage(dateImageURL);
+		ImageIcon dateIcon = new ImageIcon(dateImage);
 
 		DatePickerSettings startDateSettings = new DatePickerSettings();
 		startDateSettings.setAllowEmptyDates(false);
