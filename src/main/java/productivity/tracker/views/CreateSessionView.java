@@ -98,11 +98,11 @@ public class CreateSessionView extends JPanel implements ViewBase {
 			templateComboBox = new JComboBox<SessionTemplate>();
 			templateComboBox.setRenderer(new TemplateItemRenderer());
 
-			TemplateSQLRepository repo = new TemplateSQLRepository();
-			List<SessionTemplate> templates = repo.getAll();
-			for (SessionTemplate template : templates) {
-				templateComboBox.addItem(template);
-			}
+			//TemplateSQLRepository repo = new TemplateSQLRepository();
+			//List<SessionTemplate> templates = repo.getAll();
+			//for (SessionTemplate template : templates) {
+			//	templateComboBox.addItem(template);
+			//}
 
 		}
 		lblSelectATemplate = new JLabel("Select a template:");
