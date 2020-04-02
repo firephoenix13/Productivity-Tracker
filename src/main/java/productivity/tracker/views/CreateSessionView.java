@@ -207,7 +207,9 @@ public class CreateSessionView extends JPanel implements ViewBase {
 
 			SessionTemplate template = (SessionTemplate) value;
 
-			setText(template.getTemplateName());
+			if (index != -1)
+				setText(template.getTemplateName());
+			
 			return this;
 		}
 	}
