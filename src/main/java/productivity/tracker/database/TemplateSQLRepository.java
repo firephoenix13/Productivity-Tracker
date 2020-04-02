@@ -65,8 +65,30 @@ public class TemplateSQLRepository implements Repository<SessionTemplate> {
 
 	@Override
 	public List<SessionTemplate> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT TemplateID, TemplateName, TemplateDescription FROM Templates";
+
+		List<SessionTemplate> templates = new ArrayList<SessionTemplate>();
+
+		try (Connection conn = connect();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			// loop through the result set
+			while (rs.next()) {
+
+				// SessionID, TemplateID, SessionEfficiency, SessionStartTime, SessionDuration,
+				// SessionDate
+				SessionTemplate template = new SessionTemplate(rs.getInt("TemplateID"), rs.getString("TemplateName"),
+						rs.getString("TemplateDescription"));
+
+				templates.add(template);
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return templates;
 	}
 
 	@Override

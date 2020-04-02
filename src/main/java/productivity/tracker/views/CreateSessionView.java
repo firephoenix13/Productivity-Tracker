@@ -1,26 +1,31 @@
 package productivity.tracker.views;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.github.lgooddatepicker.components.TimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
 
+import productivity.tracker.database.TemplateSQLRepository;
 import productivity.tracker.database.models.SessionTemplate;
 
 public class CreateSessionView extends JPanel implements ViewBase {
@@ -91,6 +96,14 @@ public class CreateSessionView extends JPanel implements ViewBase {
 						.addComponent(formPanel, GroupLayout.PREFERRED_SIZE, 198, Short.MAX_VALUE).addContainerGap()));
 		{
 			templateComboBox = new JComboBox<SessionTemplate>();
+			templateComboBox.setRenderer(new TemplateItemRenderer());
+
+			TemplateSQLRepository repo = new TemplateSQLRepository();
+			List<SessionTemplate> templates = repo.getAll();
+			for (SessionTemplate template : templates) {
+				templateComboBox.addItem(template);
+			}
+
 		}
 		lblSelectATemplate = new JLabel("Select a template:");
 		lblSelectATemplate.setForeground(Color.WHITE);
@@ -184,8 +197,25 @@ public class CreateSessionView extends JPanel implements ViewBase {
 		setLayout(groupLayout);
 	}
 
+	public void addTemplateOption(SessionTemplate item) {
+		templateComboBox.addItem(item);
+	}
+
 	@Override
 	public void onPresenterAttached() {
 
+	}
+
+	class TemplateItemRenderer extends BasicComboBoxRenderer {
+		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
+				boolean cellHasFocus) {
+			
+			super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+			SessionTemplate template = (SessionTemplate) value;
+
+			setText(template.getTemplateName());
+			return this;
+		}
 	}
 }
