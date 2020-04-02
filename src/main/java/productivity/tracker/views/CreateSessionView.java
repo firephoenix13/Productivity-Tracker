@@ -27,6 +27,8 @@ import com.github.lgooddatepicker.components.TimePickerSettings;
 
 import productivity.tracker.database.TemplateSQLRepository;
 import productivity.tracker.database.models.SessionTemplate;
+import javax.swing.JTextField;
+import javax.swing.JSlider;
 
 public class CreateSessionView extends JPanel implements ViewBase {
 
@@ -69,31 +71,33 @@ public class CreateSessionView extends JPanel implements ViewBase {
 		formPanel = new JPanel();
 		formPanel.setOpaque(false);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
-				.createSequentialGroup().addContainerGap()
-				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(formPanel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
-						.addComponent(lblCreateANewSession, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 506,
-								Short.MAX_VALUE)
-						.addComponent(txtpnEnterTheDetails, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 506,
-								Short.MAX_VALUE)
-						.addComponent(separator, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 506, Short.MAX_VALUE)
-						.addComponent(separator_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 506, Short.MAX_VALUE))
-				.addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(lblCreateANewSession, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(txtpnEnterTheDetails, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-						.addGap(11)
-						.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(formPanel, GroupLayout.PREFERRED_SIZE, 198, Short.MAX_VALUE).addContainerGap()));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(formPanel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblCreateANewSession, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+						.addComponent(txtpnEnterTheDetails, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+						.addComponent(separator, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 613, Short.MAX_VALUE)
+						.addComponent(separator_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 613, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblCreateANewSession, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtpnEnterTheDetails, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(formPanel, GroupLayout.PREFERRED_SIZE, 182, Short.MAX_VALUE)
+					.addContainerGap())
+		);
 		{
 			templateComboBox = new JComboBox<SessionTemplate>();
 			templateComboBox.setRenderer(new TemplateItemRenderer());
@@ -144,48 +148,79 @@ public class CreateSessionView extends JPanel implements ViewBase {
 		endDatePicker.getComponentToggleCalendarButton().setIcon(dateIcon);
 		endTimePicker = new TimePicker(endTimeSettings);
 		endTimePicker.setTimeToNow();
+		
+		JLabel lblSelectMood = new JLabel("Select mood:");
+		lblSelectMood.setForeground(Color.WHITE);
+		lblSelectMood.setFont(new Font("Calibri", Font.PLAIN, 13));
+		
+		JSlider sldMood = new JSlider();
+		
+		JLabel lblSelectEfficiency = new JLabel("Select efficiency:");
+		lblSelectEfficiency.setForeground(Color.WHITE);
+		lblSelectEfficiency.setFont(new Font("Calibri", Font.PLAIN, 13));
+		
+		JSlider sldEfficiency = new JSlider();
 
 		GroupLayout gl_formPanel = new GroupLayout(formPanel);
-		gl_formPanel.setHorizontalGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
+		gl_formPanel.setHorizontalGroup(
+			gl_formPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_formPanel.createSequentialGroup()
-						.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblSelectATemplate, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-								.addComponent(lblSelectTheStartTIme, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-								.addComponent(
-										lblSelectTheEndTime, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 137,
-										Short.MAX_VALUE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING).addGroup(gl_formPanel
-								.createSequentialGroup()
-								.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
-										.addComponent(endDatePicker, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-										.addComponent(startDatePicker, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(endTimePicker, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-										.addComponent(startTimePicker, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
-								.addComponent(templateComboBox, 0, 365, Short.MAX_VALUE))
-						.addGap(0)));
-		gl_formPanel.setVerticalGroup(gl_formPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_formPanel
-				.createSequentialGroup()
-				.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(templateComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_formPanel.createSequentialGroup()
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblSelectATemplate, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+								.addComponent(lblSelectTheStartTIme, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+								.addComponent(lblSelectTheEndTime, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED))
+						.addGroup(Alignment.TRAILING, gl_formPanel.createSequentialGroup()
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblSelectMood, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+								.addComponent(lblSelectEfficiency, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(sldEfficiency, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+						.addComponent(sldMood, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+						.addGroup(gl_formPanel.createSequentialGroup()
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(endDatePicker, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+								.addComponent(startDatePicker, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(endTimePicker, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+								.addComponent(startTimePicker, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)))
+						.addComponent(templateComboBox, 0, 426, Short.MAX_VALUE))
+					.addGap(0))
+		);
+		gl_formPanel.setVerticalGroup(
+			gl_formPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_formPanel.createSequentialGroup()
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(templateComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblSelectATemplate, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.UNRELATED)
-				.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblSelectTheStartTIme, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 						.addComponent(startDatePicker, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 						.addComponent(startTimePicker, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.UNRELATED)
-				.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(endTimePicker, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(endTimePicker, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(endDatePicker, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-								.addComponent(lblSelectTheEndTime, GroupLayout.PREFERRED_SIZE, 20,
-										GroupLayout.PREFERRED_SIZE)))
-				.addGap(93)));
+							.addComponent(endDatePicker, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+							.addComponent(lblSelectTheEndTime, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
+					.addGap(12)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(sldMood, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblSelectMood, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_formPanel.createSequentialGroup()
+							.addGap(20)
+							.addComponent(lblSelectEfficiency, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_formPanel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(sldEfficiency, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(25))
+		);
 		formPanel.setLayout(gl_formPanel);
 		setLayout(groupLayout);
 	}
