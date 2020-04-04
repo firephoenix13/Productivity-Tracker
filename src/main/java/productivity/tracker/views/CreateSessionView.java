@@ -29,6 +29,7 @@ import productivity.tracker.database.TemplateSQLRepository;
 import productivity.tracker.database.models.SessionTemplate;
 import javax.swing.JTextField;
 import javax.swing.JSlider;
+import javax.swing.JButton;
 
 public class CreateSessionView extends JPanel implements ViewBase {
 
@@ -47,6 +48,7 @@ public class CreateSessionView extends JPanel implements ViewBase {
 	private JLabel lblSelectTheEndTime;
 	private DatePicker endDatePicker;
 	private TimePicker endTimePicker;
+	private JSeparator separator_2;
 
 	public CreateSessionView() {
 		initGUI();
@@ -70,17 +72,48 @@ public class CreateSessionView extends JPanel implements ViewBase {
 		separator_1.setForeground(Color.WHITE);
 		formPanel = new JPanel();
 		formPanel.setOpaque(false);
+		
+		separator_2 = new JSeparator();
+		separator_2.setForeground(Color.WHITE);
+		
+		JPanel panel = new JPanel();
+		panel.setOpaque(false);
+		
+		JButton btnCancelSession = new JButton("Cancel");
+		btnCancelSession.setAlignmentX(0.5f);
+		
+		JButton btnCreateSession = new JButton("Create");
+		btnCreateSession.setAlignmentX(1.0f);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(btnCancelSession, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
+					.addComponent(btnCreateSession, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnCreateSession, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnCancelSession, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(formPanel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblCreateANewSession, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
-						.addComponent(txtpnEnterTheDetails, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
-						.addComponent(separator, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 613, Short.MAX_VALUE)
-						.addComponent(separator_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 613, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 613, GroupLayout.PREFERRED_SIZE)
+						.addComponent(separator_2, GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+						.addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblCreateANewSession, GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+						.addComponent(txtpnEnterTheDetails, GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 613, Short.MAX_VALUE)
+						.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, 613, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -95,7 +128,11 @@ public class CreateSessionView extends JPanel implements ViewBase {
 					.addGap(11)
 					.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(formPanel, GroupLayout.PREFERRED_SIZE, 182, Short.MAX_VALUE)
+					.addComponent(formPanel, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(separator_2, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		{
@@ -154,12 +191,14 @@ public class CreateSessionView extends JPanel implements ViewBase {
 		lblSelectMood.setFont(new Font("Calibri", Font.PLAIN, 13));
 		
 		JSlider sldMood = new JSlider();
+		sldMood.setMaximum(10);
 		
 		JLabel lblSelectEfficiency = new JLabel("Select efficiency:");
 		lblSelectEfficiency.setForeground(Color.WHITE);
 		lblSelectEfficiency.setFont(new Font("Calibri", Font.PLAIN, 13));
 		
 		JSlider sldEfficiency = new JSlider();
+		sldEfficiency.setMaximum(10);
 
 		GroupLayout gl_formPanel = new GroupLayout(formPanel);
 		gl_formPanel.setHorizontalGroup(

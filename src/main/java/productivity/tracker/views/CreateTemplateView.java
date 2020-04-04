@@ -31,8 +31,8 @@ public class CreateTemplateView extends JPanel implements ViewBase {
 	private JTextField templateNameTextField;
 	private JTextArea templateDescriptionTextArea;
 	private JPanel panel;
-	private JButton btnCancel;
-	private JButton btnCreate;
+	private JButton btnCancelTemplate;
+	private JButton btnCreateTemplate;
 	private JSeparator separator;
 	private JSeparator separator_1;
 	private JSeparator separator_2;
@@ -100,20 +100,20 @@ public class CreateTemplateView extends JPanel implements ViewBase {
 					.addGap(9))
 		);
 
-		btnCancel = new JButton("Cancel");
-		btnCancel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnCancelTemplate = new JButton("Cancel");
+		btnCancelTemplate.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		btnCreate = new JButton("Create");
-		btnCreate.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		btnCreateTemplate = new JButton("Create");
+		btnCreateTemplate.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-						.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE).addGap(143)
-						.addComponent(btnCreate, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)));
+						.addComponent(btnCancelTemplate, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE).addGap(143)
+						.addComponent(btnCreateTemplate, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnCreate, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)));
+						.addComponent(btnCancelTemplate, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnCreateTemplate, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)));
 		panel.setLayout(gl_panel);
 		{
 			lblTemplateName = new JLabel("Template Name:");
@@ -181,11 +181,11 @@ public class CreateTemplateView extends JPanel implements ViewBase {
 	}
 
 	public void addCancelButtonListener(ActionListener l) {
-		btnCancel.addActionListener(l);
+		btnCancelTemplate.addActionListener(l);
 	}
 
 	public void addCreateButtonListener(ActionListener l) {
-		btnCreate.addActionListener(l);
+		btnCreateTemplate.addActionListener(l);
 	}
 
 	public String getTemplateName() {
